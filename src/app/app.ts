@@ -1,12 +1,25 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { WishItem } from '../shared/models/wishItem';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [CommonModule, FormsModule],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrls: ['./app.css'],
+  host: {
+    'ngSkipHydration': ''
+  }
 })
+
 export class App {
-  protected title = 'wishlist';
+  items: WishItem[] = [
+    new WishItem("to learn Angular"),
+    new WishItem("face ceva", true),
+    new WishItem("find grass that cuts itself", false)
+  ];
+
 }
