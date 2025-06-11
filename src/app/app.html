@@ -1,18 +1,34 @@
 
 <div class="container">
+  <form>
+    <div>
+      <label for="specificSizeInputName">Wish</label>
+      <input name="wishText" type="text" placeholder="add wish" [(ngModel)]="newWishText">
+    </div>
+    <div>
+      <button
+      type="submit"
+      (click)="$event.preventDefault() ; addWish()"
+      >Add Wish</button>
+    </div>
+  </form>
+
+
   <div *ngIf="items.length === 0 ;then noItems ;else showItems"></div>
   <ng-template #noItems>
     No Items found
   </ng-template>
   <ng-template #showItems>
     <ul class="wish-list">
-      <li *ngFor="let item of items">
+      <li *ngFor="let item of items;index as ii">
         <div class="form-check">
           <label class="form-check-label">
             <input 
               type="checkbox" 
               class="form-check-input" 
-              [(ngModel)]="item.isComplete" 
+              [checked]="item.isComplete" 
+              [attr.dataIndex]="ii"
+              (click) ="toggleItem(item)"
             >
             {{ item.wishText }}
           </label>

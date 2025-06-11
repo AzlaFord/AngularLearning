@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
     'ngSkipHydration': ''
   }
 })
-
+  
 export class App {
   items: WishItem[] = [
     new WishItem("to learn Angular"),
@@ -22,4 +22,20 @@ export class App {
     new WishItem("find grass that cuts itself", false)
   ];
 
+  newWishText =''
+
+  addWish(){
+    const textCurat = this.newWishText.trim();
+
+    if(textCurat === ''){
+      return
+    }else{
+      this.items.push(new WishItem(textCurat))
+      this.newWishText =''
+    }
+  }
+  toggleItem(item:WishItem){
+    item.isComplete = !item.isComplete
+    console.log(item)
+  }
 }
