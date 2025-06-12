@@ -1,17 +1,9 @@
 
 <div class="container">
-  <form>
-    <div>
-      <label for="specificSizeInputName">Wish</label>
-      <input name="wishText" type="text" placeholder="add wish" [(ngModel)]="newWishText">
-    </div>
-    <div>
-      <button
-      type="submit"
-      (click)="$event.preventDefault() ; addWish()"
-      >Add Wish</button>
-    </div>
-  </form>
+  <app-wish-list-form
+  (addWish)="items.push($event)"  
+  >
+  </app-wish-list-form>
   <select
     [(ngModel)]="listFilter"
   >
@@ -19,28 +11,9 @@
     <option value="1">Complete</option>
     <option value="2">InComplete</option>
   </select>
-
-  <div *ngIf="visibileItems.length === 0 ;then noItems ;else showItems"></div>
-  <ng-template #noItems>
-    No Items found
-  </ng-template>
-  <ng-template #showItems>
-    <ul class="wish-list">
-      <li *ngFor="let item of visibileItems;index as ii">
-        <div class="form-check">
-          <label class="form-check-label">
-            <input 
-              type="checkbox" 
-              class="form-check-input" 
-              [checked]="item.isComplete" 
-              [attr.dataIndex]="ii"
-              (click) ="toggleItem(item)"
-            >
-            {{ item.wishText }}
-          </label>
-        </div>
-      </li>
-    </ul>
-  </ng-template>
+  <app-wish-list
+    [wishes]="visibileItems"
+  >
+  </app-wish-list>
 </div>
 

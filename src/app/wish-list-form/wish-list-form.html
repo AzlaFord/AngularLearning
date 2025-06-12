@@ -1,0 +1,15 @@
+<form (ngSubmit)="onSubmit()">
+  <div>
+    <label for="wishText">Wish</label>
+    <input
+      id="wishText"
+      name="wishText"
+      type="text"
+      placeholder="Add wish"
+      [(ngModel)]="newWishText"
+    />
+  </div>
+  <div>
+    <button type="submit">Add Wish</button>
+  </div>
+</form>
