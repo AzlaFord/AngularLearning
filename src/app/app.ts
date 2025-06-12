@@ -25,6 +25,7 @@ export class App {
   newWishText =''
 
   addWish(){
+
     const textCurat = this.newWishText.trim();
 
     if(textCurat === ''){
@@ -32,6 +33,19 @@ export class App {
     }else{
       this.items.push(new WishItem(textCurat))
       this.newWishText =''
+    }
+  }
+
+  listFilter : String = '0'
+  visibleItems : WishItem[] = this.items
+  filterChanged(value:any){
+    console.log(value)
+    if(value ==='0'){
+      return this.visibleItems = this.items
+    }else if (value === '1'){
+      return this.visibleItems = this.items.filter(item => item.isComplete)
+    }else{
+      return this.visibleItems = this.items.filter(item => !item.isComplete)
     }
   }
   toggleItem(item:WishItem){
