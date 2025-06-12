@@ -37,17 +37,22 @@ export class App {
   }
 
   listFilter : String = '0'
-  visibleItems : WishItem[] = this.items
-  filterChanged(value:any){
-    console.log(value)
+
+  get visibileItems() : WishItem[]{
+
+    let value = this.listFilter
+    
     if(value ==='0'){
-      return this.visibleItems = this.items
+      return this.items
     }else if (value === '1'){
-      return this.visibleItems = this.items.filter(item => item.isComplete)
+      return this.items.filter(item => item.isComplete)
     }else{
-      return this.visibleItems = this.items.filter(item => !item.isComplete)
+      return this.items.filter(item => !item.isComplete)
     }
   }
+
+    
+
   toggleItem(item:WishItem){
     item.isComplete = !item.isComplete
     console.log(item)
