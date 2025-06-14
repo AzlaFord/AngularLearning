@@ -4,11 +4,12 @@ import { CommonModule } from '@angular/common';
 import { WishItem } from '../shared/models/wishItem';
 import { WishListForm } from './wish-list-form/wish-list-form';
 import { WishList } from './wish-list/wish-list';
+import { WishFilter } from "./wish-filter/wish-filter";
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, FormsModule,WishListForm,WishList],
+  imports: [CommonModule, FormsModule, WishListForm, WishList, WishFilter],
   templateUrl: './app.html',
   styleUrls: ['./app.css']
 })
@@ -17,13 +18,6 @@ export class App {
 
   listFilter: string = '0';
 
-  get visibileItems(): WishItem[] {
-    if (this.listFilter === '1') {
-      return this.items.filter((i: WishItem) => i.isComplete);
-    } else if (this.listFilter === '2') {
-      return this.items.filter((i: WishItem) => !i.isComplete);
-    }
-    return this.items;
-  }
+
 }
 

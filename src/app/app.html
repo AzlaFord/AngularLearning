@@ -4,13 +4,11 @@
   (addWish)="items.push($event)"  
   >
   </app-wish-list-form>
-  <select
-    [(ngModel)]="listFilter"
+  <app-wish-filter
+  (filter)=""
   >
-    <option value="0">All</option>
-    <option value="1">Complete</option>
-    <option value="2">InComplete</option>
-  </select>
+  </app-wish-filter>
+
   <app-wish-list
     [wishes]="visibileItems"
   >
